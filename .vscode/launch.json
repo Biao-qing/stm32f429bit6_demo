@@ -1,0 +1,51 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "OpenOCD + ST-Link",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/build/Debug/stm32f429bit6_demo.elf",
+      "request": "launch",
+      "type": "cortex-debug",
+      "runToEntryPoint": "main",
+      "servertype": "openocd",
+      "device": "STM32F429BITx",
+      "configFiles": [
+        "interface/stlink.cfg",
+        "target/stm32f4x.cfg"
+      ],
+      "preLaunchTask": "Build Debug",
+      "showDevDebugOutput": "raw"
+    },
+    {
+      "name": "OpenOCD + J-Link",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/build/Debug/stm32f429bit6_demo.elf",
+      "request": "launch",
+      "type": "cortex-debug",
+      "runToEntryPoint": "main",
+      "servertype": "openocd",
+      "device": "STM32F429BITx",
+      "configFiles": [
+        "interface/jlink.cfg",
+        "target/stm32f4x.cfg"
+      ],
+      "preLaunchTask": "Build Debug",
+      "showDevDebugOutput": "raw"
+    },
+    {
+      "name": "OpenOCD (attach)",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/build/Debug/stm32f429bit6_demo.elf",
+      "request": "attach",
+      "type": "cortex-debug",
+      "servertype": "openocd",
+      "device": "STM32F429BITx",
+      "configFiles": [
+        "interface/stlink.cfg",
+        "target/stm32f4x.cfg"
+      ],
+      "showDevDebugOutput": "raw"
+    }
+  ]
+}

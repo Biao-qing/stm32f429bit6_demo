@@ -1,0 +1,23 @@
+# Build output
+build/
+*.elf
+*.map
+*.bin
+*.hex
+*.lst
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
+
+# IDE
+.vs/
+*.user
+*.suo
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
