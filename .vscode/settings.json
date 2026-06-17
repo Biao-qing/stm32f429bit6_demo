@@ -1,10 +1,9 @@
 {
-  // Arm GNU Toolchain (gdb)
-  "cortex-debug.armToolchainPath": "C:\\Program Files\\Arm\\GNU Toolchain mingw-w64-x86_64-arm-none-eabi\\bin",
+  // Use 8.3 short paths — Cortex-Debug on Windows may fail to start GDB when paths contain spaces.
+  "cortex-debug.armToolchainPath": "C:/PROGRA~1/Arm/GNUTOO~1/bin",
+  "cortex-debug.openocdPath": "C:/PROGRA~1/XPACK-~1.0-7/bin/openocd.exe",
 
-  // OpenOCD (xPack)
-  "cortex-debug.openocdPath": "C:\\Program Files\\xpack-openocd-0.12.0-7\\bin\\openocd.exe",
-
+  "cortex-debug.showRTOS": true,
   "cortex-debug.enableTelemetry": false,
   "cortex-debug.variableUseNaturalFormat": true
 }

@@ -19,6 +19,28 @@
       "problemMatcher": []
     },
     {
+      "label": "Warm GDB",
+      "type": "shell",
+      "command": "C:/PROGRA~1/Arm/GNUTOO~1/bin/AR470E~1.EXE",
+      "args": [
+        "-q",
+        "--batch",
+        "-nx",
+        "-ex",
+        "quit"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Prepare Debug",
+      "dependsOn": [
+        "Build Debug",
+        "Warm GDB"
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    },
+    {
       "label": "Clean Debug",
       "type": "shell",
       "command": "powershell",

@@ -135,20 +135,37 @@ cmake --build --preset Debug
 ## 项目结构
 
 ```
-├── Core/                  # 应用代码（main、外设、中断）
+├── App/                   # 应用层（FreeRTOS 任务）
+│   ├── Inc/
+│   └── Src/
+├── Vendor/FreeRTOS/             # FreeRTOS 内核（CubeMX 不管理此目录）
+├── Core/                  # HAL 与外设初始化
 ├── Drivers/               # CMSIS + STM32 HAL
-├── cmake/                 # 工具链与 CubeMX 生成的 CMake 配置
+├── cmake/
+│   ├── app/               # 应用层 CMake
+│   ├── freertos/          # FreeRTOS CMake
+│   └── stm32cubemx/       # CubeMX 生成（勿手改，可被覆盖）
 ├── .vscode/               # 编译任务、OpenOCD 调试配置
-├── build.ps1 / flash.ps1  # 编译与烧录脚本
-├── openocd.cfg            # OpenOCD 配置（ST-Link + STM32F4）
-├── stm32f429bit6_demo.ioc # STM32CubeMX 工程
-└── CMakeLists.txt
+├── build.ps1 / flash.ps1
+├── openocd.cfg
+└── stm32f429bit6_demo.ioc
 ```
+
+## FreeRTOS
+
+- **内核**：FreeRTOS V10.6.2，`GCC/ARM_CM4F` 移植，`heap_4` 堆（18 KB）
+- **HAL 时基**：TIM6（SysTick 留给 FreeRTOS）
+- **任务**：
+  - `uart_echo` — 串口回显（队列 + 中断接收）
+  - `uart_hb` — 每 5 秒心跳
+- **入口**：`main()` 初始化外设后调用 `App_FreeRTOS_Init()` 启动调度器
+
+新增任务：在 `App/Src/` 添加源文件，并在 `cmake/app/CMakeLists.txt` 注册。
 
 ## 外设配置
 
 - **USART1**：115200 8N1，DMA 已在 CubeMX 中配置（当前代码使用中断接收）
-- **系统时钟**：180 MHz（HSI → PLL）
+- **系统时钟**：180 MHz（HSE 25 MHz → PLL，M=15 N=216 P=2）
 
 修改外设请用 STM32CubeMX 打开 `.ioc` 重新生成，用户代码写在 `/* USER CODE BEGIN */` 区域内以免被覆盖。
 
