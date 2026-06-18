@@ -28,6 +28,5 @@ Desktop.ini
 
 # Third-party (run setup-thirdparty.ps1 after clone)
 ThirdParty/FlashDB/
-ThirdParty/LwIP/
 ThirdParty/Open-SAE-J1939/
 ThirdParty/isotp-c/

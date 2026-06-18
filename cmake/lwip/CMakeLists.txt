@@ -2,7 +2,7 @@ set(LWIP_ROOT ${CMAKE_SOURCE_DIR}/ThirdParty/LwIP)
 set(LWIP_SRC ${LWIP_ROOT}/src)
 
 if(NOT EXISTS "${LWIP_SRC}/include/lwip/opt.h")
-    message(FATAL_ERROR "LwIP not found. Run setup-thirdparty.ps1 first.")
+    message(FATAL_ERROR "LwIP not found. Expected ThirdParty/LwIP from the repository.")
 endif()
 
 set(LWIP_CORE_SOURCES

@@ -47,7 +47,7 @@ cd stm32f429bit6_demo
 .\setup-thirdparty.ps1
 ```
 
-`setup-thirdparty.ps1` 会拉取 FlashDB、LwIP（需本机 STM32CubeF4 包）、Open-SAE-J1939、isotp-c。  
+`setup-thirdparty.ps1` 会拉取 FlashDB、Open-SAE-J1939、isotp-c（LwIP 与 FreeRTOS 已随仓库入库）。  
 首次编译时若缺少依赖，`build.ps1` 也会自动调用该脚本。
 
 ### 2. 配置工具链
@@ -97,8 +97,8 @@ Device/          L2  W25Q64、LAN8720 驱动
 Core/            L1  CubeMX 生成（勿手改）
 Drivers/         L0  CMSIS + HAL
 ThirdParty/FreeRTOS/          FreeRTOS 内核（入库）
+ThirdParty/LwIP/              LwIP（入库，源自 STM32CubeF4 V1.28.3）
 ThirdParty/FlashDB/           setup-thirdparty.ps1 拉取，不入库
-ThirdParty/LwIP/              从 STM32Cube 复制，不入库
 ThirdParty/Open-SAE-J1939/    setup-thirdparty.ps1 拉取，不入库
 ThirdParty/isotp-c/           setup-thirdparty.ps1 拉取，不入库
 cmake/                        分层 CMake 目标
@@ -151,7 +151,7 @@ UDS 诊断 ID：RX `0x7E0`/`0x7DF`，TX `0x7E8`。
 **找不到 `arm-none-eabi-gcc`**  
 检查 `build.ps1` 中 `$ToolchainBin` 或 PATH。
 
-**编译报 FlashDB / LwIP 相关错误**  
+**编译报 FlashDB 相关错误**  
 执行 `.\setup-thirdparty.ps1` 拉取缺失的第三方库。
 
 **`log` 提示 FlashDB not ready**  
