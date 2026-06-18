@@ -1,0 +1,46 @@
+{
+  "configurations": [
+    {
+      "name": "STM32 Debug (GCC)",
+      "compileCommands": "${workspaceFolder}/compile_commands.json",
+      "compilerPath": "C:/Program Files/Arm/GNU Toolchain mingw-w64-x86_64-arm-none-eabi/bin/arm-none-eabi-gcc.exe",
+      "intelliSenseMode": "gcc-arm",
+      "cStandard": "c11",
+      "defines": [
+        "STM32F429xx",
+        "USE_HAL_DRIVER",
+        "DEBUG"
+      ],
+      "includePath": [
+        "${workspaceFolder}/Core/Inc",
+        "${workspaceFolder}/Application/Inc",
+        "${workspaceFolder}/Services/Inc",
+        "${workspaceFolder}/Platform/Inc",
+        "${workspaceFolder}/Platform/Port",
+        "${workspaceFolder}/Device/Inc",
+        "${workspaceFolder}/Drivers/STM32F4xx_HAL_Driver/Inc",
+        "${workspaceFolder}/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
+        "${workspaceFolder}/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
+        "${workspaceFolder}/Drivers/CMSIS/Include",
+        "${workspaceFolder}/Vendor/FreeRTOS/Source/include",
+        "${workspaceFolder}/Vendor/FreeRTOS/Source/portable/GCC/ARM_CM4F",
+        "${workspaceFolder}/Vendor/FlashDB/inc",
+        "${workspaceFolder}/Vendor/FlashDB/port/fal/inc"
+      ],
+      "browse": {
+        "path": [
+          "${workspaceFolder}/Core",
+          "${workspaceFolder}/Application",
+          "${workspaceFolder}/Services",
+          "${workspaceFolder}/Platform",
+          "${workspaceFolder}/Device",
+          "${workspaceFolder}/Drivers",
+          "${workspaceFolder}/Vendor/FreeRTOS",
+          "${workspaceFolder}/Vendor/FlashDB"
+        ],
+        "limitSymbolsToIncludedHeaders": false
+      }
+    }
+  ],
+  "version": 4
+}

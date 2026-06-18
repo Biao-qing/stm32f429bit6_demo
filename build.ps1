@@ -26,6 +26,11 @@ param(
 $ErrorActionPreference = "Stop"
 
 $ProjectRoot = $PSScriptRoot
+$FlashDbMarker = Join-Path $ProjectRoot "Vendor\FlashDB\inc\fdb_def.h"
+if (-not (Test-Path $FlashDbMarker)) {
+    Write-Host "FlashDB not found. Running setup-vendor.ps1 ..."
+    & (Join-Path $ProjectRoot "setup-vendor.ps1")
+}
 $ToolchainBin = "C:\Program Files\Arm\GNU Toolchain mingw-w64-x86_64-arm-none-eabi\bin"
 $BuildDir = Join-Path $ProjectRoot "build\$Config"
 $ToolchainFile = Join-Path $ProjectRoot "cmake\gcc-arm-none-eabi.cmake"
@@ -51,6 +56,28 @@ if (-not (Test-CommandExists "cmake")) {
 
 $Generator = if (Test-CommandExists "ninja") { "Ninja" } else { "MinGW Makefiles" }
 
+function Update-CompileCommands {
+    param([string]$BuildDirectory)
+
+    $Src = Join-Path $BuildDirectory "compile_commands.json"
+    $Dst = Join-Path $ProjectRoot "compile_commands.json"
+    if (Test-Path $Src) {
+        Copy-Item -Force $Src $Dst
+        Write-Host "Updated compile_commands.json for IDE indexing." -ForegroundColor DarkGray
+    }
+}
+
+function Invoke-CMakeConfigure {
+    Write-Host "Configuring ($Config, $Generator) ..."
+    & cmake -B $BuildDir `
+        -DCMAKE_BUILD_TYPE=$Config `
+        "-DCMAKE_TOOLCHAIN_FILE=$ToolchainFile" `
+        -DCMAKE_EXPORT_COMPILE_COMMANDS=ON `
+        -G $Generator
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+    Update-CompileCommands $BuildDir
+}
+
 if ($Clean) {
     if (Test-Path $BuildDir) {
         Write-Host "Removing $BuildDir ..."
@@ -63,12 +90,7 @@ if ($Clean) {
 }
 
 if (-not (Test-Path $BuildDir)) {
-    Write-Host "Configuring ($Config, $Generator) ..."
-    & cmake -B $BuildDir `
-        -DCMAKE_BUILD_TYPE=$Config `
-        "-DCMAKE_TOOLCHAIN_FILE=$ToolchainFile" `
-        -G $Generator
-    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+    Invoke-CMakeConfigure
 } elseif (-not (Test-CommandExists "ninja")) {
     # Switching generator requires a clean configure.
     $cacheFile = Join-Path $BuildDir "CMakeCache.txt"
@@ -77,18 +99,20 @@ if (-not (Test-Path $BuildDir)) {
         if ($cache -match "CMAKE_GENERATOR:INTERNAL=Ninja" -and $Generator -eq "MinGW Makefiles") {
             Write-Host "Build cache uses Ninja but Ninja is unavailable. Reconfiguring ..."
             Remove-Item -Recurse -Force $BuildDir
-            & cmake -B $BuildDir `
-                -DCMAKE_BUILD_TYPE=$Config `
-                "-DCMAKE_TOOLCHAIN_FILE=$ToolchainFile" `
-                -G $Generator
-            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+            Invoke-CMakeConfigure
         }
     }
+}
+
+if (-not (Test-Path (Join-Path $BuildDir "compile_commands.json"))) {
+    Invoke-CMakeConfigure
 }
 
 Write-Host "Building ($Config) ..."
 & cmake --build $BuildDir
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+Update-CompileCommands $BuildDir
 
 $ElfPath = Join-Path $BuildDir "stm32f429bit6_demo.elf"
 if (Test-Path $ElfPath) {

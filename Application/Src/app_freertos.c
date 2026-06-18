@@ -1,4 +1,7 @@
 #include "app_freertos.h"
+#include "fdb_port.h"
+#include "flash_app.h"
+#include "led_app.h"
 #include "uart_app.h"
 
 #include "FreeRTOS.h"
@@ -24,6 +27,9 @@ void vApplicationMallocFailedHook(void)
 
 void App_FreeRTOS_Init(void)
 {
+  fdb_port_mutex_init();
+  LedApp_Init();
   UartApp_Init();
+  FlashApp_Init();
   vTaskStartScheduler();
 }

@@ -37,7 +37,11 @@ add_executable(${CMAKE_PROJECT_NAME})
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
 add_subdirectory(cmake/freertos)
-add_subdirectory(cmake/app)
+add_subdirectory(cmake/device)
+add_subdirectory(cmake/platform)
+add_subdirectory(cmake/flashdb)
+add_subdirectory(cmake/services)
+add_subdirectory(cmake/application)
 
 # Link directories setup
 target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
@@ -65,7 +69,11 @@ list(REMOVE_ITEM CMAKE_C_IMPLICIT_LINK_LIBRARIES ob)
 # Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
     stm32cubemx
-    app
+    application
+    services
+    flashdb
+    platform
+    device_drv
     freertos_kernel
 
     # Add user defined libraries

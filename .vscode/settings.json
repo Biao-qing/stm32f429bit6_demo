@@ -1,9 +1,25 @@
 {
-  // Use 8.3 short paths — Cortex-Debug on Windows may fail to start GDB when paths contain spaces.
   "cortex-debug.armToolchainPath": "C:/PROGRA~1/Arm/GNUTOO~1/bin",
   "cortex-debug.openocdPath": "C:/PROGRA~1/XPACK-~1.0-7/bin/openocd.exe",
-
   "cortex-debug.showRTOS": true,
   "cortex-debug.enableTelemetry": false,
-  "cortex-debug.variableUseNaturalFormat": true
+  "cortex-debug.variableUseNaturalFormat": true,
+
+  "C_Cpp.default.configurationName": "STM32 Debug (GCC)",
+  "C_Cpp.default.compileCommands": "${workspaceFolder}/compile_commands.json",
+  "C_Cpp.default.compilerPath": "C:/Program Files/Arm/GNU Toolchain mingw-w64-x86_64-arm-none-eabi/bin/arm-none-eabi-gcc.exe",
+  "C_Cpp.default.intelliSenseMode": "gcc-arm",
+  "C_Cpp.default.cStandard": "c11",
+  "C_Cpp.intelliSenseEngine": "default",
+  "C_Cpp.errorSquiggles": "enabled",
+  "C_Cpp.autocomplete": "default",
+  "C_Cpp.workspaceParsingPriority": "highest",
+
+  "clangd.enable": false,
+
+  "files.associations": {
+    "*.h": "c",
+    "main.h": "c",
+    "FreeRTOSConfig.h": "c"
+  }
 }
