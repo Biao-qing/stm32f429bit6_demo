@@ -18,26 +18,9 @@
         "-nx"
       ],
       "preLaunchTask": "Prepare Debug",
-      "rtos": "auto",
-      "showDevDebugOutput": "raw"
-    },
-    {
-      "name": "OpenOCD + ST-Link (no RTOS)",
-      "cwd": "${workspaceFolder}",
-      "executable": "${workspaceFolder}/build/Debug/stm32f429bit6_demo.elf",
-      "request": "launch",
-      "type": "cortex-debug",
-      "runToEntryPoint": "main",
-      "servertype": "openocd",
-      "device": "STM32F429BITx",
-      "configFiles": [
-        "interface/stlink.cfg",
-        "target/stm32f4x.cfg"
+      "postRestartCommands": [
+        "monitor reset halt"
       ],
-      "debuggerArgs": [
-        "-nx"
-      ],
-      "preLaunchTask": "Prepare Debug",
       "showDevDebugOutput": "raw"
     },
     {
@@ -54,7 +37,6 @@
         "target/stm32f4x.cfg"
       ],
       "preLaunchTask": "Prepare Debug",
-      "rtos": "auto",
       "showDevDebugOutput": "raw"
     },
     {
@@ -69,7 +51,6 @@
         "interface/stlink.cfg",
         "target/stm32f4x.cfg"
       ],
-      "rtos": "auto",
       "showDevDebugOutput": "raw"
     }
   ]

@@ -2,6 +2,8 @@
 #include "fdb_port.h"
 #include "flash_app.h"
 #include "led_app.h"
+#include "net_app.h"
+#include "can_app.h"
 #include "uart_app.h"
 
 #include "FreeRTOS.h"
@@ -31,5 +33,7 @@ void App_FreeRTOS_Init(void)
   LedApp_Init();
   UartApp_Init();
   FlashApp_Init();
+  CanApp_Init();
+  NetApp_Init();
   vTaskStartScheduler();
 }

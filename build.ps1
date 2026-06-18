@@ -26,10 +26,13 @@ param(
 $ErrorActionPreference = "Stop"
 
 $ProjectRoot = $PSScriptRoot
-$FlashDbMarker = Join-Path $ProjectRoot "Vendor\FlashDB\inc\fdb_def.h"
-if (-not (Test-Path $FlashDbMarker)) {
-    Write-Host "FlashDB not found. Running setup-vendor.ps1 ..."
-    & (Join-Path $ProjectRoot "setup-vendor.ps1")
+$FlashDbMarker = Join-Path $ProjectRoot "ThirdParty\FlashDB\inc\fdb_def.h"
+$LwIpMarker = Join-Path $ProjectRoot "ThirdParty\LwIP\src\include\lwip\opt.h"
+$J1939Marker = Join-Path $ProjectRoot "ThirdParty\Open-SAE-J1939\Src\Open_SAE_J1939\Open_SAE_J1939.h"
+$IsotpMarker = Join-Path $ProjectRoot "ThirdParty\isotp-c\isotp.c"
+if (-not (Test-Path $FlashDbMarker) -or -not (Test-Path $LwIpMarker) -or -not (Test-Path $J1939Marker) -or -not (Test-Path $IsotpMarker)) {
+    Write-Host "Third-party packages missing. Running setup-thirdparty.ps1 ..."
+    & (Join-Path $ProjectRoot "setup-thirdparty.ps1")
 }
 $ToolchainBin = "C:\Program Files\Arm\GNU Toolchain mingw-w64-x86_64-arm-none-eabi\bin"
 $BuildDir = Join-Path $ProjectRoot "build\$Config"

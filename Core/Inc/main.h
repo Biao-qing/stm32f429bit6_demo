@@ -73,6 +73,16 @@ void Error_Handler(void);
 #define W25Q64_MISO_GPIO_Port GPIOB
 #define W25Q64_MOSI_Pin GPIO_PIN_5
 #define W25Q64_MOSI_GPIO_Port GPIOB
+#define CAN1_RX_Pin GPIO_PIN_8
+#define CAN1_RX_GPIO_Port GPIOB
+#define CAN1_TX_Pin GPIO_PIN_9
+#define CAN1_TX_GPIO_Port GPIOB
+#define CAN2_RX_Pin GPIO_PIN_12
+#define CAN2_RX_GPIO_Port GPIOB
+#define CAN2_TX_Pin GPIO_PIN_13
+#define CAN2_TX_GPIO_Port GPIOB
+#define ETH_RESET_Pin GPIO_PIN_3
+#define ETH_RESET_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 

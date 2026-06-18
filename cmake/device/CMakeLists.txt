@@ -1,5 +1,6 @@
 set(DEVICE_SOURCES
     ${CMAKE_SOURCE_DIR}/Device/Src/w25q64.c
+    ${CMAKE_SOURCE_DIR}/Device/Src/lan8720.c
 )
 
 add_library(device_drv OBJECT ${DEVICE_SOURCES})

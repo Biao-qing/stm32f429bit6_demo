@@ -1,4 +1,4 @@
-set(FLASHDB_ROOT ${CMAKE_SOURCE_DIR}/Vendor/FlashDB)
+set(FLASHDB_ROOT ${CMAKE_SOURCE_DIR}/ThirdParty/FlashDB)
 
 set(FLASHDB_SOURCES
     ${FLASHDB_ROOT}/src/fdb.c

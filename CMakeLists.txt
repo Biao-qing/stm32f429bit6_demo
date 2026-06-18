@@ -37,6 +37,9 @@ add_executable(${CMAKE_PROJECT_NAME})
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
 add_subdirectory(cmake/freertos)
+add_subdirectory(cmake/lwip)
+add_subdirectory(cmake/j1939)
+add_subdirectory(cmake/isotp)
 add_subdirectory(cmake/device)
 add_subdirectory(cmake/platform)
 add_subdirectory(cmake/flashdb)
@@ -73,8 +76,11 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
     services
     flashdb
     platform
+    j1939
+    isotp
     device_drv
     freertos_kernel
+    lwip
 
     # Add user defined libraries
 )

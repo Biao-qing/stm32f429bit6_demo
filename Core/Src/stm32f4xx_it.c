@@ -20,6 +20,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f4xx_it.h"
+#include "can.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "FreeRTOS.h"
@@ -61,6 +62,9 @@ extern DMA_HandleTypeDef hdma_usart1_rx;
 extern DMA_HandleTypeDef hdma_usart1_tx;
 extern UART_HandleTypeDef huart1;
 extern TIM_HandleTypeDef htim6;
+extern ETH_HandleTypeDef heth;
+extern CAN_HandleTypeDef hcan1;
+extern CAN_HandleTypeDef hcan2;
 
 /* USER CODE BEGIN EV */
 
@@ -217,6 +221,84 @@ void DMA2_Stream7_IRQHandler(void)
   /* USER CODE BEGIN DMA2_Stream7_IRQn 1 */
 
   /* USER CODE END DMA2_Stream7_IRQn 1 */
+}
+
+/**
+  * @brief This function handles Ethernet global interrupt.
+  */
+void ETH_IRQHandler(void)
+{
+  /* USER CODE BEGIN ETH_IRQn 0 */
+
+  /* USER CODE END ETH_IRQn 0 */
+  HAL_ETH_IRQHandler(&heth);
+  /* USER CODE BEGIN ETH_IRQn 1 */
+
+  /* USER CODE END ETH_IRQn 1 */
+}
+
+/**
+  * @brief This function handles CAN1 TX interrupts.
+  */
+void CAN1_TX_IRQHandler(void)
+{
+  HAL_CAN_IRQHandler(&hcan1);
+}
+
+/**
+  * @brief This function handles CAN1 RX0 interrupts.
+  */
+void CAN1_RX0_IRQHandler(void)
+{
+  HAL_CAN_IRQHandler(&hcan1);
+}
+
+/**
+  * @brief This function handles CAN1 RX1 interrupts.
+  */
+void CAN1_RX1_IRQHandler(void)
+{
+  HAL_CAN_IRQHandler(&hcan1);
+}
+
+/**
+  * @brief This function handles CAN1 SCE interrupts.
+  */
+void CAN1_SCE_IRQHandler(void)
+{
+  HAL_CAN_IRQHandler(&hcan1);
+}
+
+/**
+  * @brief This function handles CAN2 TX interrupts.
+  */
+void CAN2_TX_IRQHandler(void)
+{
+  HAL_CAN_IRQHandler(&hcan2);
+}
+
+/**
+  * @brief This function handles CAN2 RX0 interrupts.
+  */
+void CAN2_RX0_IRQHandler(void)
+{
+  HAL_CAN_IRQHandler(&hcan2);
+}
+
+/**
+  * @brief This function handles CAN2 RX1 interrupts.
+  */
+void CAN2_RX1_IRQHandler(void)
+{
+  HAL_CAN_IRQHandler(&hcan2);
+}
+
+/**
+  * @brief This function handles CAN2 SCE interrupts.
+  */
+void CAN2_SCE_IRQHandler(void)
+{
+  HAL_CAN_IRQHandler(&hcan2);
 }
 
 /* USER CODE BEGIN 1 */

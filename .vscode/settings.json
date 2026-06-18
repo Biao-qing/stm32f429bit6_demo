@@ -1,7 +1,6 @@
 {
   "cortex-debug.armToolchainPath": "C:/PROGRA~1/Arm/GNUTOO~1/bin",
   "cortex-debug.openocdPath": "C:/PROGRA~1/XPACK-~1.0-7/bin/openocd.exe",
-  "cortex-debug.showRTOS": true,
   "cortex-debug.enableTelemetry": false,
   "cortex-debug.variableUseNaturalFormat": true,
 

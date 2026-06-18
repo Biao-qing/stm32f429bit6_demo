@@ -22,10 +22,10 @@
         "${workspaceFolder}/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy",
         "${workspaceFolder}/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
         "${workspaceFolder}/Drivers/CMSIS/Include",
-        "${workspaceFolder}/Vendor/FreeRTOS/Source/include",
-        "${workspaceFolder}/Vendor/FreeRTOS/Source/portable/GCC/ARM_CM4F",
-        "${workspaceFolder}/Vendor/FlashDB/inc",
-        "${workspaceFolder}/Vendor/FlashDB/port/fal/inc"
+        "${workspaceFolder}/ThirdParty/FreeRTOS/Source/include",
+        "${workspaceFolder}/ThirdParty/FreeRTOS/Source/portable/GCC/ARM_CM4F",
+        "${workspaceFolder}/ThirdParty/FlashDB/inc",
+        "${workspaceFolder}/ThirdParty/FlashDB/port/fal/inc"
       ],
       "browse": {
         "path": [
@@ -35,8 +35,8 @@
           "${workspaceFolder}/Platform",
           "${workspaceFolder}/Device",
           "${workspaceFolder}/Drivers",
-          "${workspaceFolder}/Vendor/FreeRTOS",
-          "${workspaceFolder}/Vendor/FlashDB"
+          "${workspaceFolder}/ThirdParty/FreeRTOS",
+          "${workspaceFolder}/ThirdParty/FlashDB"
         ],
         "limitSymbolsToIncludedHeaders": false
       }
